@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="block">
     <h1>
       {{ title }}
     </h1>
@@ -8,22 +8,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { Header } from '@/components/Header'
+  import { defineComponent, ref } from 'vue';
+  import { Header } from '@/components/header';
 
-export default defineComponent({
-  name: 'Home',
-  components: {
-    Header
-  },
-  setup() {
-    const title = ref<String>('my home');
+  export default defineComponent({
+    name: 'Home',
+    components: {
+      Header,
+    },
+    setup() {
+      const title = ref<String>('my home');
 
-    return {
-      title
-    }
-  }
-})
-
+      return {
+        title,
+      };
+    },
+  });
 </script>
-

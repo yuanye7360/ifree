@@ -1,4 +1,4 @@
-import { createVuePlugin } from 'vite-plugin-vue2'
+import { createVuePlugin } from 'vite-plugin-vue2';
 import { resolve } from 'path';
 
 export default {
@@ -7,5 +7,5 @@ export default {
       '@': resolve(__dirname, 'src'),
     },
   },
-  plugins: [createVuePlugin()]
-}
+  plugins: [createVuePlugin()],
+};
