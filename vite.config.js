@@ -1,5 +1,6 @@
-import { createVuePlugin } from 'vite-plugin-vue2';
 import { resolve } from 'path';
+import { createVuePlugin } from 'vite-plugin-vue2';
+import compressPlugin from 'vite-plugin-compression';
 
 export default {
   resolve: {
@@ -7,5 +8,18 @@ export default {
       '@': resolve(__dirname, 'src'),
     },
   },
-  plugins: [createVuePlugin()],
+  plugins: [
+    compressPlugin({
+      ext: '.gz',
+      deleteOriginFile: false, // 是否删除原始文件
+    }),
+    createVuePlugin(),
+  ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "./src/style/var.scss";',
+      },
+    },
+  },
 };

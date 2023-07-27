@@ -1,20 +1,38 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Router from 'vue-router';
+import Components from '../views/Components.vue';
+import docs from '../components/index';
 
-// 注册路由插件
-Vue.use(VueRouter);
+Vue.use(Router);
 
-const routes = [
+export const constantRoutes = [
+  {
+    path: '/404',
+    component: () => import('../views/404.vue'),
+    hidden: true,
+  },
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import('../views/Home.vue'),
   },
+  {
+    path: '/Components',
+    name: 'Components',
+    component: Components,
+    children: docs,
+  },
+
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true },
 ];
 
-const router = new VueRouter({
-  routes,
-});
+const createRouter = () =>
+  new Router({
+    scrollBehavior: () => ({ y: 0, x: 0 }),
+    routes: constantRoutes,
+  });
+
+const router = createRouter();
 
 export default router;
